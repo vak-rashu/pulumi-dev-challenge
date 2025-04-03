@@ -1,4 +1,6 @@
 config:
+environment:
+  - pulumi-esc/dev-env
   aws:region: us-east-1
   aws:accessKey: test
   aws:secretKey: test
@@ -279,5 +281,4 @@ config:
     - worklink: http://localhost:4566
     - workspaces: http://localhost:4566
     - xray: http://localhost:4566
-environment:
-  - pulumi-esc/dev-env
+
