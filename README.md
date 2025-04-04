@@ -33,8 +33,7 @@ config:
 
 Now I can use the configuration values, as I did in **config.py**, to be use in my code like the following:-
 
-`config.py`
-<pre>
+`config.py`<pre>
   import pulumi
   
   #Import the configuration values
