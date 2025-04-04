@@ -30,7 +30,7 @@ Using `esc env edit`, I configured the Pulumi values:
     city: New%20York
 </pre> 
 
-##### -Linking Environment in Pulumi.<stack>.yaml
+##### -Linking Environment in Pulumi.(stack).yaml
 <pre>environment:
   - pulumi-esc/dev-env
 config:
