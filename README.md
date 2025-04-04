@@ -1,22 +1,28 @@
 ## Overview
-This project is a submission of **Pulumi Deploy and Document Challenge** - *Shhh, It's a secret!*
+This project is submitted as part of the **Pulumi Deploy and Document Challenge** – *"Shhh, It's a secret!"*  
+It demonstrates how to securely store and access secrets using **Pulumi ESC** and integrate them into an AWS Lambda function.
+
 ## About the Project
-This project configures a Lambda Code to run and fetch value from [weatherstack.com](https://weatherstack.com/) and would store the temperature in SSM under the parameter name /weather/temperature_value.
+The project deploys an AWS Lambda function that fetches weather data from [weatherstack.com](https://weatherstack.com/) and stores the current temperature in AWS Systems Manager (SSM) under the parameter path:  
+`/weather/temperature_value`
+
 ## How I used Pulumi ESC in my Project
-I used Pulumi ESC to store the API key. It was really easy to setup the whole thing.
+I used Pulumi ESC to store the API key. Pulumi ESC made it extremely easy to manage secrets like API keys without hardcoding them or using environment variables. The integration into Pulumi's configuration system was seamless and secure.It was really easy to setup the whole thing.
+
 ##### -Creating the environment
 `esc env init <project-name/<environment-name>`
-##### -Setting the value of API in esc
+
+##### -Setting Secrets (API Keys)
 `esc env set <project-name>/<environment-name> <key> <value>`
 
 For Example
 
 `esc env set pulumi-esc/dev-env api-key <value>`
 
-To use the values, first we have to set the config in the env file. We can edit the env file by using the following command:-
+##### -Editing the Environment
+Using `esc env edit`, I configured the Pulumi values:
 
 `esc env edit pulumi-esc/dev-env`
-
 <pre>
   values:
   pulumiConfig:
@@ -24,16 +30,15 @@ To use the values, first we have to set the config in the env file. We can edit 
     city: New%20York
 </pre> 
 
-Now we can easily use this value in any project. For doing this, I configured Pulumi.(stack).yaml file to use the specified environment. 
-
+##### -Linking Environment in Pulumi.<stack>.yaml
 <pre>environment:
   - pulumi-esc/dev-env
 config:
   aws:region: us-east-1</pre>
 
-Now I can use the configuration values, as I did in **config.py**, to be use in my code like the following:-
+Inside my `config.py` file, I retrieved the configuration like this:-
 
-`config.py`<pre>
+<pre>
   import pulumi
   
   #Import the configuration values
