@@ -27,7 +27,7 @@ lambda_function = aws.lambda_.Function("ssm-store-api",
     handler="lambda.handler",
     role=lambda_role.arn,
     code=pulumi.AssetArchive({
-        ".": pulumi.FileArchive("./api_infra") 
+        ".": pulumi.FileArchive("./lambda_code") 
     })
 )
 
