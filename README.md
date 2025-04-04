@@ -50,3 +50,7 @@ Inside my `config.py` file, I retrieved the configuration like this:-
   city = config.get("city")
 </pre>
 
+## Getting Started
+To deploy the project, simply run:-
+`pulumi up`  
+
