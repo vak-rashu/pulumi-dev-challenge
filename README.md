@@ -13,7 +13,7 @@ For Example
 
 `esc env set pulumi-esc/dev-env api-key <value>`
 
-To use this, first we have to set the config in the env file. We can edit the env file by using the following command:-
+To use the values, first we have to set the config in the env file. We can edit the env file by using the following command:-
 
 `esc env edit pulumi-esc/dev-env`
 
@@ -24,12 +24,25 @@ To use this, first we have to set the config in the env file. We can edit the en
     city: New%20York
 </pre> 
 
-After this we can easily use this value set in any project. For doing this, I used Pulumi.(stack).yaml file to use the specified environment. 
+Now we can easily use this value in any project. For doing this, I configured Pulumi.(stack).yaml file to use the specified environment. 
 
 <pre>environment:
   - pulumi-esc/dev-env
 config:
   aws:region: us-east-1</pre>
 
-Now I can use the configuration values, as I did in **config.py**, to be use in my code.
+Now I can use the configuration values, as I did in **config.py**, to be use in my code like the following:-
+
+`config.py`
+<pre>
+  import pulumi
+  
+  #Import the configuration values
+  config = pulumi.Config()
+
+  #Retrieve the values of "api-key" and "city"
+  endpoint_url = config.get("endpoint_url")
+  api_key = config.get("api-key")
+  city = config.get("city")
+</pre>
 
