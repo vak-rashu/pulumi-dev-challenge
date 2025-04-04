@@ -11,14 +11,25 @@ I used Pulumi ESC to store the API key. It was really easy to setup the whole th
 
 For Example
 
-`esc env set pulumi-esc/den-env api-key <value>`
+`esc env set pulumi-esc/dev-env api-key <value>`
 
-After this we can easily use this value set in any project. For doing this, I used Pulumi.<stack>.yaml file to use the specified environment. 
+To use this, first we have to set the config in the env file. We can edit the env file by using the following command:-
 
-<pre>```environment:
+`esc env edit pulumi-esc/dev-env`
+
+<pre>
+  values:
+  pulumiConfig:
+    api-key: (value)
+    city: New%20York
+</pre> 
+
+After this we can easily use this value set in any project. For doing this, I used Pulumi.(stack).yaml file to use the specified environment. 
+
+<pre>environment:
   - pulumi-esc/dev-env
-  - pulumi-localstack/config-env
 config:
-  aws:region: us-east-1```</pre>
+  aws:region: us-east-1</pre>
 
+Now I can use the configuration values, as I did in **config.py**, to be use in my code.
 
