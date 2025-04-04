@@ -10,7 +10,15 @@ I used Pulumi ESC to store the API key. It was really easy to setup the whole th
 `esc env set <project-name>/<environment-name> <key> <value>`
 
 For Example
+
 `esc env set pulumi-esc/den-env api-key <value>`
 
-After this we can easily use this value set in any project. For doing this, I used Pulumi.<stack>.yaml file to use the specified environment.
+After this we can easily use this value set in any project. For doing this, I used Pulumi.<stack>.yaml file to use the specified environment. 
+
+<pre>```environment:
+  - pulumi-esc/dev-env
+  - pulumi-localstack/config-env
+config:
+  aws:region: us-east-1```</pre>
+
 
