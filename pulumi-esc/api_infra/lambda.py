@@ -1,11 +1,13 @@
 import boto3
-import os
 import json
 import requests
-from api_infra.config import api_key, city
+from api_infra.config import api_key, city, endpoint_url
 
-endpoint_url = "http://localhost:4566"
+endpoint_url = endpoint_url
+api_key = api_key
+city_val = city
 
+#set up SSM client
 ssm_client = boto3.client("ssm",
             endpoint_url = endpoint_url,
             aws_access_key_id = 'test', 
@@ -15,9 +17,6 @@ ssm_client = boto3.client("ssm",
 
 def handler(event, context):
         try:
-            api_key = api_key
-            city_val = city
-            
             #getting value from the url
             base_url = f"https://api.weatherstack.com/current?access_key={api_key}&query={city_val}"
             response = requests.get(base_url)
